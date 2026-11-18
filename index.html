@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>CYBER BOYS - GTA</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:Arial} .top{position:sticky;top:0;background:#111;padding:12px;display:flex;justify-content:space-between;z-index:20} .money{background:#00ff88;color:#000;padding:8px 14px;border-radius:20px;font-weight:bold} .hero{height:160px;background:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900') center/cover;display:flex;align-items:flex-end;padding:15px} .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px} .card{background:#151515;border-radius:15px;overflow:hidden;border:1px solid #222} .card img{width:100%;height:100px;object-fit:cover} .card div{padding:10px} button{width:100%;background:#00ff88;border:none;padding:13px;border-radius:10px;font-weight:bold;margin-top:7px} button.red{background:#ff2d55;color:#fff} button.gold{background:#ffcc00} button.blue{background:#0099ff;color:#fff} input{width:100%;padding:12px;border-radius:10px;border:none;margin:5px 0;background:#222;color:#fff} .sec{padding:10px} .hidden{display:none} canvas{width:100%;background:#333;border-radius:15px} .chat{height:120px;overflow:auto;background:#111;padding:10px;border-radius:10px;font-size:13px} .admin{border:2px solid red!important}</style></head>
+<body>
+<div id="login" style="padding:25px;text-align:center"><h1 style="font-size:42px">🔥 CYBER <span style="color:#00ff88">BOYS</span></h1><p style="color:#aaa">Lagos GTA Life - Own The City</p><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900" style="width:100%;height:200px;object-fit:cover;border-radius:20px"><p>Enter Username</p><input id="u" placeholder="e.g cybermax"><button onclick="login()">ENTER CITY →</button><p style="color:#666;font-size:12px">New player = $50,000 • Oga = cybermax</p></div>
+<div id="game" class="hidden">
+<div class="top"><b>CYBER BOYS</b><div class="money" id="mTop">$0</div></div>
+<div class="hero"><div><h1 id="wel" style="margin:0">Welcome</h1><p id="carTxt" style="color:#00ff88;font-weight:bold">No Car</p></div></div>
+<div class="sec"><h2>🏁 DRIVE YOUR CAR - GTA STYLE</h2><canvas id="road" width="350" height="200"></canvas><p style="text-align:center;color:#aaa">Use buttons to drive</p><div style="display:flex;gap:8px"><button onclick="drive('left')">◀ LEFT</button><button onclick="drive('right')">RIGHT ▶</button></div><button onclick="drive('gas')" style="background:#ffcc00">💨 GAS + SPEED</button><p id="speedTxt" style="text-align:center">Speed: 0 km/h | Score: $0</p></div>
+<div class="sec"><h2>🗺️ CITY MAP</h2></div>
+<div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"><div><h3>🏠 House</h3><p>Lekki Mansion</p><button onclick="house()">ENTER HOUSE +$2000</button></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600"><div><h3>🚗 Garage</h3><p>Buy Real Cars</p><button onclick="toggle('garage')">OPEN GARAGE</button></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600"><div><h3>🎉 Club</h3><p>Flex -$2000</p><button onclick="club()">GO CLUB</button></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600"><div><h3>🏖️ Beach</h3><p>Chill</p><button onclick="beach()">GO BEACH</button></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=600"><div><h3>🎰 Casino</h3><p>Win Double</p><button onclick="casino()">PLAY CASINO</button></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600"><div><h3>🏁 Race</h3><p>Win $20k</p><button onclick="race()">START RACE</button></div></div>
+</div>
+<div id="garage" class="sec hidden"><h2>🚗 GARAGE - REAL CARS</h2>
+<div class="card" style="margin-bottom:10px"><img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800" style="height:160px"><div><h3>Mercedes Benz AMG - $30,000</h3><p>V8 • Black • 0-100 in 4s</p><button onclick="buy('Mercedes Benz AMG',30000)">BUY BENZ</button></div></div>
+<div class="card" style="margin-bottom:10px"><img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800" style="height:160px"><div><h3>Lamborghini Huracan - $150,000</h3><p>V10 • Orange • 0-100 in 2.9s</p><button onclick="buy('Lamborghini Huracan',150000)">BUY LAMBO</button></div></div>
+<div class="card" style="margin-bottom:10px"><img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800" style="height:160px"><div><h3>Tesla Roadster - $250,000</h3><p>Electric • Fastest • 0-100 in 1.9s</p><button class="gold" onclick="buy('Tesla Roadster',250000)">BUY TESLA</button></div></div>
+</div>
+<div class="sec"><h2>💬 CITY CHAT</h2><div class="chat" id="chatBox">Welcome to Cyber Boys City...</div><input id="chatIn" placeholder="Type message..."><button class="blue" onclick="sendChat()">SEND CHAT</button></div>
+<div id="admin" class="sec hidden"><div class="card admin"><div><h3>👑 ADMIN - cybermax ONLY</h3><input id="tUser" placeholder="Target username e.g tunde"><input id="tAmt" type="number" placeholder="Amount e.g 100000"><button onclick="agive()">💰 GIVE MONEY</button><button class="red" onclick="aban()">🚫 BAN USER</button><button class="blue" onclick="aunban()">✅ UNBAN</button><button class="gold" onclick="alambo()">🏎️ GIVE LAMBO FREE</button><p id="amsg" style="color:#00ff88"></p><input id="cmd" placeholder="/give tunde 100000 or /ban tunde"><button onclick="runCmd()">RUN COMMAND</button><p id="cmsg"></p></div></div></div>
+<div class="sec"><button class="red" onclick="logout()">LOGOUT</button><p style="text-align:center;color:#555;font-size:11px">CYBER BOYS © 2026 - Made by cybermax</p></div>
+</div>
+<script>
+let me="",db=JSON.parse(localStorage.getItem('cyberboys_final')||'{}'),carX=150,speed=0,score=0;
+let ctx=document.getElementById('road').getContext('2d');
+function save(){localStorage.setItem('cyberboys_final',JSON.stringify(db))}
+function login(){
+me=document.getElementById('u').value.trim(); if(!me) return alert('Put username');
+if(db['ban_'+me]) return alert('BANNED BY cybermax');
+if(me==='cybermax'){
+let pass=prompt('Enter Admin Password for cybermax');
+if(pass!=='inventor'){alert('Wrong password! You no be Oga'); location.reload(); return;}
+}
+if(!db[me]) db[me]={money:50000,car:'No Car'};
+if(me==='cybermax'){db[me].money=Math.max(db[me].money,1000000); db[me].car='Lamborghini Huracan'}
+save(); upd(); document.getElementById('login').classList.add('hidden'); document.getElementById('game').classList.remove('hidden'); if(me==='cybermax') document.getElementById('admin').classList.remove('hidden'); drawRoad();}
+function upd(){document.getElementById('mTop').innerText='$'+db[me].money.toLocaleString(); document.getElementById('wel').innerText='Welcome, '+me; document.getElementById('carTxt').innerText='🚗
